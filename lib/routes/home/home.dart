@@ -3,6 +3,8 @@ import 'package:safe_route/routes/home/tabs/control_tab/control_tab.dart';
 import 'package:safe_route/routes/home/tabs/home_tab/home_tab.dart';
 import 'package:safe_route/routes/home/tabs/maps_tab/maps_tab.dart';
 import 'package:safe_route/routes/home/tabs/navigation_tab/navigation_tab.dart';
+
+
 import 'package:safe_route/routes/home/tabs/settings_tab/settings_tab.dart';
 
 import '../utils/app_colors.dart';
@@ -19,7 +21,7 @@ class _HomeState extends State<Home> {
   List<Widget> tabs = [
     HomeTab(),
     ControlTab(),
-    NavigationTab(),
+    TAnimation(),
     MapsTab(),
     SettingsTab(),
   ];
@@ -32,21 +34,10 @@ class _HomeState extends State<Home> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          //centerTitle: true,
-          title: Text(
-            "Mercedes-Benz E350",
-            style: TextStyle(
-                color: AppColors.textColor,
-                fontWeight: FontWeight.w300,
-                fontSize: 30),
-          ),
-        ),
+
         body: tabs[currentTap],
         bottomNavigationBar: Theme(
-          data: Theme.of(context).copyWith(canvasColor: Color(0xff57454574)),
+          data: Theme.of(context).copyWith(canvasColor: AppColors.accentColor),
           child: BottomNavigationBar(
             currentIndex: currentTap,
             onTap: (tappedTap) {
@@ -55,7 +46,7 @@ class _HomeState extends State<Home> {
             },
             showUnselectedLabels: true,
             selectedFontSize: 12,
-            iconSize: 36,
+            iconSize: 26,
             selectedItemColor: AppColors.primaryColor,
             items: const [
               BottomNavigationBarItem(
