@@ -20,15 +20,20 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.accentColor,
-      appBar: AppBar(
-        // elevation: 0,
-        title: Text("Login"),
-        toolbarHeight: MediaQuery.of(context).size.height * .1,
-        backgroundColor: AppColors.primaryColor,
-        // centerTitle: true,
-      ),
-      body: SingleChildScrollView(
+
+      //backgroundColor: Colors.transparent,
+      // appBar: AppBar(
+      //    elevation: 0,
+      //   title: Text("Login"),
+      //   toolbarHeight: MediaQuery.of(context).size.height * .1,
+      //   backgroundColor: Colors.transparent,
+      //    centerTitle: true,
+      // ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/login.png"), fit: BoxFit.fill),
+        ),
         child: Padding(
           padding: EdgeInsets.all(14.0),
           child: Column(
@@ -40,7 +45,7 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: EdgeInsets.all(8),
                 child: Text(
-                  "Welcoome back!",
+                  "Welcome back!",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       fontSize: 24,

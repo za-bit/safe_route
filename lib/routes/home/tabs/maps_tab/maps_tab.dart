@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:latlong2/latlong.dart';
 
 class MapsTab extends StatefulWidget {
 
@@ -20,7 +21,34 @@ class _MapsTabState extends State<MapsTab> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold();
+    return Scaffold(
+      body: FlutterMap(
+        options: MapOptions(
+          center: LatLng(51.509364, -0.128928),
+          zoom: 9.2,
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: 'https://api.mapbox.com/styles/v1/zahret-elislam/clsci9kks01ou01r40nli1f1z/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiemFocmV0LWVsaXNsYW0iLCJhIjoiY2xzY2FwdG82MGhxMjJrb2FyYjlheXprMyJ9.--32X_CmZJDTkyFt90HazA',
+            additionalOptions: {
+              'accessToken':'pk.eyJ1IjoiemFocmV0LWVsaXNsYW0iLCJhIjoiY2xzY2FwdG82MGhxMjJrb2FyYjlheXprMyJ9.--32X_CmZJDTkyFt90HazA',
+              'id':'mapbox.mapbox-streets-v8'
+
+    },
+          ),
+          // MarkerLayer(
+          //   markers: [
+          //     Marker(point: LatLng(51.509364, -0.128928),width: 80.0,height: 80.0, builder: (context) => Container(
+          //       child: FlutterLogo(
+          //
+          //       ),
+          //     ),)
+          //   ],
+          // )
+        ],
+      )
+
+    );
   }
   subscribeToLocationUpdates(){
     final LocationSettings locationSettings = LocationSettings(

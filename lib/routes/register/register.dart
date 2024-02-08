@@ -21,75 +21,81 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.accentColor,
-      appBar: AppBar(
-        elevation: 0,
-        title: Text("Register"),
-        backgroundColor: AppColors.primaryColor,
-        // centerTitle: true,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(14),
-        child: SingleChildScrollView(
-          child: Column(children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .25,
-            ),
-            TextFormField(
-              onChanged: (text) {username=text;},
-              decoration: InputDecoration(
-                label: Text("user name"),
-                labelStyle: TextStyle(color: AppColors.textColor),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.textColor),
-                ),
+      backgroundColor: Colors.transparent,
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   title: Text("Register"),
+      //   backgroundColor: Colors.transparent,
+      //   centerTitle: true,
+      // ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/login.png"), fit: BoxFit.fill),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(14),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .25,
               ),
-              style: TextStyle(color: AppColors.textColor),
-            ),
-            TextFormField(
-              onChanged: (text) {
-                email = text;
-              },
-              decoration: InputDecoration(
-                label: Text("Email"),
-                labelStyle: TextStyle(color: AppColors.textColor),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.textColor),
-                ),
-              ),
-              style: TextStyle(color: AppColors.textColor),
-            ),
-            TextFormField(
-              onChanged: (text) {
-                password = text;
-              },
-              decoration: InputDecoration(
-                label: Text("Password"),
-                labelStyle: TextStyle(color: AppColors.textColor),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.textColor),
-                ),
-              ),
-              style: TextStyle(color: AppColors.textColor),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .2,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  registerUser();
-                },
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll(AppColors.primaryColor)),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                  child: Text(
-                    "Creat account",
-                    style: TextStyle(fontSize: 18),
+              TextFormField(
+                onChanged: (text) {username=text;},
+                decoration: InputDecoration(
+                  label: Text("user name"),
+                  labelStyle: TextStyle(color: AppColors.textColor),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.textColor),
                   ),
-                )),
-          ]),
+                ),
+                style: TextStyle(color: AppColors.textColor),
+              ),
+              TextFormField(
+                onChanged: (text) {
+                  email = text;
+                },
+                decoration: InputDecoration(
+                  label: Text("Email"),
+                  labelStyle: TextStyle(color: AppColors.textColor),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.textColor),
+                  ),
+                ),
+                style: TextStyle(color: AppColors.textColor),
+              ),
+              TextFormField(
+                onChanged: (text) {
+                  password = text;
+                },
+                decoration: InputDecoration(
+                  label: Text("Password"),
+                  labelStyle: TextStyle(color: AppColors.textColor),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.textColor),
+                  ),
+                ),
+                style: TextStyle(color: AppColors.textColor),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .2,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    registerUser();
+                  },
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll(AppColors.primaryColor)),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                    child: Text(
+                      "Creat account",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  )),
+            ]),
+          ),
         ),
       ),
     );
