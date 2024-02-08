@@ -37,36 +37,7 @@ class Profile extends StatelessWidget {
                 flex: 50,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Name",
-                                style: TextStyle(
-                                    color: AppColors.textColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            UserDM.currentUser!.userName,
-                            style: TextStyle(
-                                color: AppColors.textColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ),
+                    getRowOption("User Name", UserDM.currentUser!.userName),
                     Divider(
                       height: 1,
                       thickness: 0.5,
@@ -74,38 +45,16 @@ class Profile extends StatelessWidget {
                       indent: 30,
                       color: AppColors.textColor,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Email",
-                                style: TextStyle(
-                                    color: AppColors.textColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
+                   getRowOption("Email", UserDM.currentUser!.email,),
 
-                          Text(
-                            UserDM.currentUser!.email,
-                            style: TextStyle(
-                                color: AppColors.textColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-
-                        ],
-                      ),
+                    Divider(
+                      height: 1,
+                      thickness: 0.5,
+                      endIndent: 30,
+                      indent: 30,
+                      color: AppColors.textColor,
                     ),
-
+                    getRowOption("Car ID", UserDM.currentUser!.carid,),
                   ],
                 )),
           ],
@@ -115,22 +64,36 @@ class Profile extends StatelessWidget {
   }
 }
 
-/* Widget getRowOption(String selectedOption ){
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+Widget getRowOption(String selectedOption,String selected ){
+    return          Padding(
+      padding: const EdgeInsets.all(15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-
           Row(
             children: [
-              Icon(Icons.person),
-              Text(selectedOption,style: TextStyle(color: AppColors.textColor,fontSize: 18,fontWeight: FontWeight.w500),),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                selectedOption,
+                style: TextStyle(
+                    color: AppColors.textColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+              ),
             ],
           ),
-          Icon(Icons.arrow_forward_ios_outlined),
+
+          Text(
+            selected,
+            style: TextStyle(
+                color: AppColors.textColor,
+                fontSize: 15,
+                fontWeight: FontWeight.w500),
+          ),
 
         ],
       ),
     );
-  }*/
+  }

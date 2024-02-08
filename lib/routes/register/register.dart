@@ -17,6 +17,7 @@ class _RegisterState extends State<Register> {
   String email = "";
   String password = "";
   String username="";
+  String carid="";
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +67,19 @@ class _RegisterState extends State<Register> {
               ),
               TextFormField(
                 onChanged: (text) {
+                  carid = text;
+                },
+                decoration: InputDecoration(
+                  label: Text("Car ID"),
+                  labelStyle: TextStyle(color: AppColors.textColor),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.textColor),
+                  ),
+                ),
+                style: TextStyle(color: AppColors.textColor),
+              ),
+              TextFormField(
+                onChanged: (text) {
                   password = text;
                 },
                 decoration: InputDecoration(
@@ -106,9 +120,9 @@ class _RegisterState extends State<Register> {
       showLoading();
       UserCredential credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-     await saveUserInFireStore(email,username,credential.user!.uid);
+     await saveUserInFireStore(email,username,credential.user!.uid,carid);
       hideLoading();
-      UserDM.currentUser=UserDM(credential.user!.uid, email, username);
+      UserDM.currentUser=UserDM(credential.user!.uid, email, username,carid);
 
       Navigator.pushNamed(context, Home.routeName);
 
@@ -167,13 +181,14 @@ class _RegisterState extends State<Register> {
       },
     );
   }
-   Future saveUserInFireStore(String email,String userName,String uid) async {
+   Future saveUserInFireStore(String email,String userName,String uid,String carid) async {
      CollectionReference usersCollection=FirebaseFirestore.instance.collection("users");
     DocumentReference userDocument=usersCollection.doc(uid);
     return userDocument.set({
       "id":uid,
       "email":email,
-      "username":username
+      "username":username,
+      "carid":carid
     });
    }
 }
