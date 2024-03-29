@@ -42,17 +42,7 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .25,
               ),
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Text(
-                  "Welcome back!",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+
               TextFormField(
                 onChanged: (text) {email = text;},
                 decoration: InputDecoration(
@@ -75,7 +65,7 @@ class _LoginState extends State<Login> {
                 ),style: TextStyle(color: AppColors.textColor),
               ),
               SizedBox(
-                height: 14,
+                height: 18,
               ),
               ElevatedButton(
                   onPressed: () {
@@ -118,7 +108,7 @@ class _LoginState extends State<Login> {
       UserDM.currentUser=user;
       hideLoading();
 
-      Navigator.pushNamed(context, Home.routeName);
+      Navigator.pushReplacementNamed(context, Home.routeName);
 
 
     } on FirebaseAuthException catch (exception) {
@@ -182,7 +172,7 @@ class _LoginState extends State<Login> {
   DocumentReference doc=usersCollection.doc(uid);
   DocumentSnapshot snapshot=await doc.get();
   Map json=snapshot.data() as Map;
-  UserDM user=UserDM(uid, email, json["username"],json["carid"]);
+  UserDM user=UserDM(uid, email, json["username"],json["address"],json["phone"]);
   return user;
   }
 }

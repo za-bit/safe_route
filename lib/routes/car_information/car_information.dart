@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../model/use_dm.dart';
 import '../utils/app_colors.dart';
 
 class CarInfo extends StatelessWidget {
@@ -13,7 +14,7 @@ static String routeName="car info";
         backgroundColor: Colors.transparent,
         //centerTitle: true,
         title: Text(
-          "Change Car",
+          "Car Information",
           style: TextStyle(
               color: AppColors.textColor,
               fontWeight: FontWeight.w300,
@@ -37,35 +38,32 @@ static String routeName="car info";
                 child: Column(
                   children: [
 
-                getRowOption("Brand"),
+                    getRowOption("Brand", " "),
                     Divider(
                       height: 1,
-                      thickness: 0.5,endIndent: 30,indent: 30,
+                      thickness: 0.5,
+                      endIndent: 30,
+                      indent: 30,
                       color: AppColors.textColor,
                     ),
+                    getRowOption("Color"," "),
 
-                    getRowOption("Model"),
                     Divider(
                       height: 1,
-                      thickness: 0.5,endIndent: 30,indent: 30,
+                      thickness: 0.5,
+                      endIndent: 30,
+                      indent: 30,
                       color: AppColors.textColor,
                     ),
-
-                    getRowOption("Color"),
+                    getRowOption("Model", " "),
                     Divider(
                       height: 1,
-                      thickness: 0.5,endIndent: 30,indent: 30,
+                      thickness: 0.5,
+                      endIndent: 30,
+                      indent: 30,
                       color: AppColors.textColor,
                     ),
-
-                    getRowOption("Version"),
-                    Divider(
-                      height: 1,
-                      thickness: 0.5,endIndent: 30,indent: 30,
-                      color: AppColors.textColor,
-                    ),
-
-                    getRowOption("License Plates"),
+                    getRowOption("Version", " "),
 
 
                   ],
@@ -78,25 +76,40 @@ static String routeName="car info";
   }
 }
 
- Widget getRowOption(String selectedOption ){
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
 
-              SizedBox(width: 5,),
-              Text(selectedOption,style: TextStyle(color: AppColors.textColor,fontSize: 18,fontWeight: FontWeight.w500),),
-            ],
-          ),
-          Icon(Icons.arrow_forward_ios_outlined,color: AppColors.textColor,size: 18),
+Widget getRowOption(String selectedOption,String selected ){
+  return          Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              selectedOption,
+              style: TextStyle(
+                  color: AppColors.textColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
 
+        Text(
+          selected,
+          style: TextStyle(
+              color: AppColors.textColor,
+              fontSize: 15,
+              fontWeight: FontWeight.w500),
 
+        ),
+        Icon(Icons.arrow_forward_ios_outlined,color: AppColors.textColor,size: 18),
 
-        ],
-      ),
-    );
-  }
+      ],
+    ),
+  );
+}
 

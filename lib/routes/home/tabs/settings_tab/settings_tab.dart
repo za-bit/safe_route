@@ -83,7 +83,7 @@ class SettingsTab extends StatelessWidget {
                               children: [
                                 Icon(Icons.car_crash_outlined,color: AppColors.textColor),
                                 SizedBox(width: 5,),
-                                Text("Car Imformation",style: TextStyle(color: AppColors.textColor,fontSize: 18,fontWeight: FontWeight.w500),),
+                                Text("Car Information",style: TextStyle(color: AppColors.textColor,fontSize: 18,fontWeight: FontWeight.w500),),
                               ],
                             ),
                             Icon(Icons.arrow_forward_ios_outlined,color: AppColors.textColor,size: 18),

@@ -3,6 +3,7 @@ class UserDM{
   String id;
   String email;
   String userName;
-  String carid;
-  UserDM(this.id,this.email,this.userName,this.carid);
+  String address;
+  String phone;
+  UserDM(this.id,this.email,this.userName,this.address,this.phone);
 }

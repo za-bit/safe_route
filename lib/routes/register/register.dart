@@ -17,7 +17,9 @@ class _RegisterState extends State<Register> {
   String email = "";
   String password = "";
   String username="";
-  String carid="";
+  String address="";
+  String phone="";
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +69,10 @@ class _RegisterState extends State<Register> {
               ),
               TextFormField(
                 onChanged: (text) {
-                  carid = text;
+                  address = text;
                 },
                 decoration: InputDecoration(
-                  label: Text("Car ID"),
+                  label: Text("Address"),
                   labelStyle: TextStyle(color: AppColors.textColor),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: AppColors.textColor),
@@ -78,6 +80,22 @@ class _RegisterState extends State<Register> {
                 ),
                 style: TextStyle(color: AppColors.textColor),
               ),
+              TextFormField(
+                onChanged: (text) {
+                  phone = text;
+                },
+                decoration: InputDecoration(
+                  label: Text("Phone"),
+                  labelStyle: TextStyle(color: AppColors.textColor),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.textColor),
+                  ),
+                ),
+                style: TextStyle(color: AppColors.textColor),
+              ),
+
+
+
               TextFormField(
                 onChanged: (text) {
                   password = text;
@@ -92,7 +110,7 @@ class _RegisterState extends State<Register> {
                 style: TextStyle(color: AppColors.textColor),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * .2,
+                height: MediaQuery.of(context).size.height * .1,
               ),
               ElevatedButton(
                   onPressed: () {
@@ -105,7 +123,7 @@ class _RegisterState extends State<Register> {
                     padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                     child: Text(
                       "Creat account",
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18,color: AppColors.textColor),
                     ),
                   )),
             ]),
@@ -120,9 +138,9 @@ class _RegisterState extends State<Register> {
       showLoading();
       UserCredential credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-     await saveUserInFireStore(email,username,credential.user!.uid,carid);
+     await saveUserInFireStore(email,username,credential.user!.uid,address,phone);
       hideLoading();
-      UserDM.currentUser=UserDM(credential.user!.uid, email, username,carid);
+      UserDM.currentUser=UserDM(credential.user!.uid, email, username,address,phone);
 
       Navigator.pushNamed(context, Home.routeName);
 
@@ -181,14 +199,16 @@ class _RegisterState extends State<Register> {
       },
     );
   }
-   Future saveUserInFireStore(String email,String userName,String uid,String carid) async {
+   Future saveUserInFireStore(String email,String userName,String uid,String address,String phone) async {
      CollectionReference usersCollection=FirebaseFirestore.instance.collection("users");
     DocumentReference userDocument=usersCollection.doc(uid);
     return userDocument.set({
       "id":uid,
       "email":email,
       "username":username,
-      "carid":carid
+      "address":address,
+      "phone":phone,
+
     });
    }
 }
